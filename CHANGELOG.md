@@ -6,8 +6,8 @@ rendering coloured text.
 
 0.3.7
 -----
-- [PR #24](https://github.com/tehmaze/ansi/pull/25) Enable empty sequences that evaluate to the empty string.
-- [PR #24](https://github.com/tehmaze/ansi/pull/25) Enable concatenating a string and a sequence, not just a sequence and a string.
+- [PR #25](https://github.com/tehmaze/ansi/pull/25) Enable empty sequences that evaluate to the empty string.
+- [PR #26](https://github.com/tehmaze/ansi/pull/25) Enable concatenating a string and a sequence, not just a sequence and a string.
 
 0.3.6
 -----
