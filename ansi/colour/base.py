@@ -17,14 +17,23 @@ class Graphic(object):
         """Create a new graphics object with a list of commands."""
         self.values = values
 
-    def __add__(self, their: T) -> T:
+    def __add__(self, other: T) -> T:
         """Append either a string to the escape sequence resulting in a new string, or combine with more commands."""
-        if isinstance(their, str):
+        if isinstance(other, str):
             # For some reason mypy does not understand that T is string in this case
-            return cast(T, self.sequence + their)
-        elif isinstance(their, Graphic):
-            return Graphic(*(self.values + their.values))
-        raise TypeError('You can only add escape sequences or strings to an escape sequence.')
+            return cast(T, self.sequence + other)
+        elif isinstance(other, Graphic):
+            return Graphic(*(self.values + other.values))
+        raise NotImplemented('You can only add escape sequences or strings to an escape sequence.')
+
+    def __radd__(self, other: T) -> T:
+        """Append either a string to the escape sequence resulting in a new string, or combine with more commands."""
+        if isinstance(other, str):
+            # For some reason mypy does not understand that T is string in this case
+            return cast(T, other + str(self))
+        elif isinstance(other, Graphic):
+            return Graphic(*(other.values + self.values))
+        raise NotImplemented('You can only add escape sequences or strings to an escape sequence.')
 
     def __call__(self, text: str, reset: bool = True) -> str:
         """Apply the escape sequence to a string, issuing a reset at the end."""
